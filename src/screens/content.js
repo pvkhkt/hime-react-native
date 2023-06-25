@@ -5,7 +5,7 @@ function ContentScreen({ route, navigation }) {
   return (
     <WebView
       source={{
-        html: html,
+        html: html ? html : "<h1><center>ĐANG CẬP NHẬT</center></h1>",
       }}
     />
   );
