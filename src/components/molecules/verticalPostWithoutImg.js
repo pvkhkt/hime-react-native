@@ -1,18 +1,17 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 
-export default function VerticalPost({ id, title, shorttext, html, avatar }) {
+export default function VerticalPostWithoutImg({
+  id,
+  title,
+  shorttext,
+  html,
+  avatar,
+}) {
   return (
     <View style={styles.item}>
-      <Image style={styles.image} source={{ uri: avatar }} />
-      <View style={styles.content}>
-        <Text style={styles.title} numberOfLines={3}>
-          {title}
-        </Text>
-        <Text style={styles.shorttext} numberOfLines={4}>
-          {shorttext}
-        </Text>
-        <Text style={styles.readmore}>{"Xem thêm >>>"}</Text>
-      </View>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.shorttext}>{shorttext}</Text>
+      <Text style={styles.readmore}>{"Xem thêm >>>"}</Text>
     </View>
   );
 }
@@ -36,14 +35,15 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   title: {
-    fontSize: 17,
-    margin: 3,
+    flex: 1,
+    fontSize: 16,
     color: "black",
     fontWeight: "bold",
     flexWrap: "wrap",
     overflow: "hidden",
   },
   shorttext: {
+    flex: 1.5,
     fontSize: 14,
     margin: 3,
     color: "gray",
@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
   },
   readmore: {
     fontSize: 13,
-    margin: 3,
     color: "red",
     flexWrap: "wrap",
   },

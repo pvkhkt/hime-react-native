@@ -6,10 +6,11 @@ import {
   Text,
   Button,
   TouchableOpacity,
+  View,
 } from "react-native";
 
 import { SearchBar } from "react-native-elements";
-import { FAB } from "react-native-elements";
+import { FAB } from "react-native-paper";
 
 import HorizonalPost from "../components/molecules/horizontalPost";
 import { useEffect, useState } from "react";
@@ -51,64 +52,74 @@ function HomeScreen({ navigation }) {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <SearchBar
-        placeholder="Tìm kiếm..."
-        onChangeText={updateSearch}
-        onSubmitEditing={onSummitEditing}
-        value={search}
-      />
-      <Text style={styles.session}>Danh sách câu chuyện</Text>
-      <FlatList
-        horizontal={true}
-        data={story}
-        contentContainerStyle={styles.contentContainer}
-        ListFooterComponent={btnLoadMore}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Content", { html: item.html })}
-          >
-            <HorizonalPost
-              id={item.id}
-              title={item.title}
-              shorttext={item.shorttext}
-              avatar={item.avatar}
-            />
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item) => item.id}
-      />
-      <Text style={styles.session}>Danh sách bài học</Text>
-      <FlatList
-        horizontal={true}
-        data={lesson}
-        contentContainerStyle={styles.contentContainer}
-        ListFooterComponent={btnLoadMore}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Content", { html: item.html })}
-          >
-            <HorizonalPost
-              id={item.id}
-              title={item.title}
-              shorttext={item.shorttext}
-              avatar={item.avatar}
-            />
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item) => item.id}
-      />
+    <View style={styles.container}>
+      <ScrollView style={styles.container}>
+        <SearchBar
+          style={styles.searchBar}
+          placeholder="Tìm kiếm..."
+          onChangeText={updateSearch}
+          onSubmitEditing={onSummitEditing}
+          value={search}
+        />
+        <Text style={styles.session}>Danh sách câu chuyện</Text>
+        <FlatList
+          horizontal={true}
+          data={story}
+          contentContainerStyle={styles.contentContainer}
+          // ListFooterComponent={btnLoadMore}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Content", { html: item.html })
+              }
+            >
+              <HorizonalPost
+                id={item.id}
+                title={item.title}
+                shorttext={item.shorttext}
+                avatar={item.avatar}
+              />
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item) => item.id}
+        />
+        <Text style={styles.session}>Danh sách bài học</Text>
+        <FlatList
+          horizontal={true}
+          data={lesson}
+          contentContainerStyle={styles.contentContainer}
+          ListFooterComponent={btnLoadMore}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Content", { html: item.html })
+              }
+            >
+              <HorizonalPost
+                id={item.id}
+                title={item.title}
+                shorttext={item.shorttext}
+                avatar={item.avatar}
+              />
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item) => item.id}
+        />
+      </ScrollView>
       <FAB
-        placement="right"
-        icon={"./src/assets/icon.png"}
-        color="coral"
+        style={styles.fab}
+        icon="camera"
+        color="black"
         onPress={() => navigation.navigate("Camera")}
       ></FAB>
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  searchBar: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     backgroundColor: "white",
@@ -128,6 +139,15 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     alignItems: "center",
+  },
+  fab: {
+    position: "absolute",
+    bottom: 0,
+    alignSelf: "flex-end",
+    borderRadius: 100,
+    backgroundColor: "coral",
+    margin: 16,
+    right: 0,
   },
 });
 

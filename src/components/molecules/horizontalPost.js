@@ -5,15 +5,19 @@ export default function HorizontalPost({ id, title, shorttext, html, avatar }) {
     <View style={styles.item}>
       <Image style={styles.image} source={{ uri: avatar }} />
       <View style={styles.content}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.shorttext}>{shorttext}</Text>
+        <Text style={styles.title} numberOfLines={3}>
+          {title}
+        </Text>
+        <Text style={styles.shorttext} numberOfLines={3}>
+          {shorttext}
+        </Text>
         <Text style={styles.readmore}>{"Xem thêm >>>"}</Text>
       </View>
     </View>
   );
 }
 
-const itemWidth = 250;
+const itemWidth = 180;
 const styles = StyleSheet.create({
   item: {
     margin: 10,
@@ -22,7 +26,7 @@ const styles = StyleSheet.create({
   },
   image: {
     borderRadius: 20,
-    height: 300,
+    height: 250,
     width: itemWidth,
   },
   content: {
@@ -33,17 +37,20 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
+    margin: 3,
     color: "black",
     fontWeight: "bold",
     flexWrap: "wrap",
   },
   shorttext: {
     fontSize: 15,
+    margin: 3,
     color: "gray",
     flexWrap: "wrap",
   },
   readmore: {
     fontSize: 13,
+    margin: 3,
     color: "red",
     flexWrap: "wrap",
   },

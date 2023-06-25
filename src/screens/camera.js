@@ -64,7 +64,7 @@ function CameraScreen({ navigation }) {
           style={styles.button}
           onPress={() => setShowCamera(true)}
         >
-          <Text style={styles.text}>Take picture</Text>
+          <Text style={styles.text}>Chụp</Text>
         </TouchableOpacity>
       )}
       {photo && (
@@ -102,19 +102,19 @@ function CameraScreen({ navigation }) {
                 )
               }
             >
-              <Text style={styles.text}>Flip</Text>
+              <Text style={styles.text}>Xoay</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
               onPress={() => takePicture(this.camera)}
             >
-              <Text style={styles.text}>Take picture</Text>
+              <Text style={styles.text}>Chụp</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
               onPress={() => setShowCamera(false)}
             >
-              <Text style={styles.text}>Cancel</Text>
+              <Text style={styles.text}>Thoát</Text>
             </TouchableOpacity>
           </View>
         </Camera>
@@ -127,10 +127,10 @@ function CameraScreen({ navigation }) {
           ) : (
             <View style={styles.buttonsContainer}>
               <TouchableOpacity style={styles.button} onPress={retakePicture}>
-                <Text style={styles.text}>Retake picture</Text>
+                <Text style={styles.text}>Chụp lại</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.button} onPress={acceptPicture}>
-                <Text style={styles.text}>Send picture</Text>
+                <Text style={styles.text}>Nhận diện</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "transparent",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-end",
     justifyContent: "space-between",
     padding: 30,
   },
