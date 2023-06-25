@@ -8,6 +8,7 @@ const apiSearch = API_DOMAIN + "/v1/search";
 
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Accept", "application/json");
 
 export const doSearch = async (keyword) => {
   var raw = JSON.stringify({
@@ -59,7 +60,7 @@ export const getBaiHoc = async (from = 1, limit = 3) => {
 };
 
 export const upload = async (path) => {
-  filepath = "file:///" + path.split("file:/").join("");
+  const filepath = "file:///" + path.split("file:/").join("");
   const file = {
     uri: filepath, // e.g. 'file:///path/to/file/image123.jpg'
     name: filepath.split("/").pop(),
