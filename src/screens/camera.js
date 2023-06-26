@@ -72,13 +72,13 @@ function CameraScreen({ navigation }) {
           <Image source={{ uri: photo }} style={styles.preview} />
           <View style={styles.buttonsContainer}>
             <TouchableOpacity style={styles.button} onPress={retakePicture}>
-              <Text style={styles.text}>Retake picture</Text>
+              <Text style={styles.text}>Chụp lại</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
               onPress={() => setShowReview(true)}
             >
-              <Text style={styles.text}>Accept picture</Text>
+              <Text style={styles.text}>Nhận dạng</Text>
             </TouchableOpacity>
           </View>
         </View>

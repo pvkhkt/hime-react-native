@@ -17,6 +17,9 @@ import { useEffect, useState } from "react";
 import { getBaiHoc, getCauChuyen, doSearch } from "../utils/http";
 import CameraScreen from "./camera";
 
+let updateSearch;
+let onSummitEditing;
+
 function btnLoadMore() {
   return <Button color={"coral"} title="Xem thêm"></Button>;
 }
