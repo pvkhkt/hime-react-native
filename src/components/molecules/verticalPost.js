@@ -17,6 +17,8 @@ export default function VerticalPost({ id, title, shorttext, html, avatar }) {
   );
 }
 
+const itemHeight = 150;
+
 const styles = StyleSheet.create({
   item: {
     margin: 10,
@@ -25,19 +27,19 @@ const styles = StyleSheet.create({
   },
   image: {
     borderRadius: 20,
-    height: 180,
-    width: 100,
+    height: itemHeight,
+    width: 120,
   },
   content: {
     flex: 1,
     margin: 5,
-    height: 180,
+    height: itemHeight,
     backgroundColor: "white",
     flexDirection: "column",
   },
   title: {
     fontSize: 17,
-    margin: 3,
+    margin: 2,
     color: "black",
     fontWeight: "bold",
     flexWrap: "wrap",
@@ -45,14 +47,14 @@ const styles = StyleSheet.create({
   },
   shorttext: {
     fontSize: 14,
-    margin: 3,
+    margin: 2,
     color: "gray",
     flexWrap: "wrap",
     overflow: "hidden",
   },
   readmore: {
     fontSize: 13,
-    margin: 3,
+    margin: 2,
     color: "red",
     flexWrap: "wrap",
   },

@@ -91,7 +91,7 @@ function HomeScreen({ navigation }) {
           horizontal={true}
           data={lesson}
           contentContainerStyle={styles.contentContainer}
-          ListFooterComponent={btnLoadMore}
+          // ListFooterComponent={btnLoadMore}
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() =>

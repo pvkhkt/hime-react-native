@@ -1,14 +1,20 @@
-import axios from "axios";
+const API_DOMAIN = "https://a0dc-43-198-37-83.ngrok-free.app/v1"; // python
+const apiUpload = API_DOMAIN + "/upload";
+const apiGetBaiHoc = API_DOMAIN + "/getbaihoc";
+const apiGetCauChuyen = API_DOMAIN + "/getcauchuyen";
+const apiSearch = API_DOMAIN + "/search";
 
-const API_DOMAIN = "https://a0dc-43-198-37-83.ngrok-free.app"; // main
-const apiUpload = API_DOMAIN + "/v1/upload";
-const apiGetBaiHoc = API_DOMAIN + "/v1/getbaihoc";
-const apiGetCauChuyen = API_DOMAIN + "/v1/getcauchuyen";
-const apiSearch = API_DOMAIN + "/v1/search";
+// const API_DOMAIN = "https://88b3-115-79-193-205.ngrok-free.app"; // main
+// const apiUpload = API_DOMAIN + "/upload";
+// const apiGetBaiHoc = API_DOMAIN + "/lesson";
+// const apiGetCauChuyen = API_DOMAIN + "/story";
+// const apiSearch = API_DOMAIN + "/search";
 
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 myHeaders.append("Accept", "application/json");
+// myHeaders.append("Access-Control-Allow-Origin", "*");
+// myHeaders.append("ngrok-skip-browser-warning", "true");
 
 export const doSearch = async (keyword) => {
   var raw = JSON.stringify({

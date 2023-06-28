@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/icon.png",
         "backgroundColor": "#ffffff",
         "package": "com.dttv.hime"
       },
@@ -29,7 +29,7 @@
         "android.permission.BIND_DEVICE_ADMIN"
       ],
       "package": "com.dttv.hime",
-      "versionCode": 9
+      "versionCode": 12
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
