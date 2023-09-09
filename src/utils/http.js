@@ -1,4 +1,4 @@
-const API_DOMAIN = "https://a0dc-43-198-37-83.ngrok-free.app/v1"; // python
+const API_DOMAIN = "https://f7e0-18-163-152-142.ngrok-free.app/v1"; // python
 const apiUpload = API_DOMAIN + "/upload";
 const apiGetBaiHoc = API_DOMAIN + "/getbaihoc";
 const apiGetCauChuyen = API_DOMAIN + "/getcauchuyen";
@@ -29,7 +29,7 @@ export const doSearch = async (keyword) => {
   };
 
   const response = await fetch(apiSearch, requestOptions).then((response) =>
-    response.text()
+    response.text(),
   );
 
   return JSON.parse(response);
@@ -44,7 +44,7 @@ export const getCauChuyen = async (from = 1, limit = 3) => {
 
   const endpoint = `${apiGetCauChuyen}`;
   const response = await fetch(endpoint, requestOptions).then((response) =>
-    response.text()
+    response.text(),
   );
 
   return JSON.parse(response);
@@ -59,7 +59,7 @@ export const getBaiHoc = async (from = 1, limit = 3) => {
 
   const endpoint = `${apiGetBaiHoc}`;
   const response = await fetch(endpoint, requestOptions).then((response) =>
-    response.text()
+    response.text(),
   );
 
   return JSON.parse(response);
