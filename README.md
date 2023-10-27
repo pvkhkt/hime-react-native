@@ -7,7 +7,7 @@ Native and Expo.
 
 Please install the following tool before starting your app.
 
-_All the following links below is for Windows._
+_All the following links below are for Windows._
 
 - [Git](https://github.com/git-for-windows/git/releases/download/v2.42.0.windows.2/PortableGit-2.42.0.2-64-bit.7z.exe).
 - [Expo](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en&gl=US).
