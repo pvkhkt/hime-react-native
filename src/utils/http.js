@@ -1,4 +1,4 @@
-const API_DOMAIN = "https://f7e0-18-163-152-142.ngrok-free.app/v1"; // python
+const API_DOMAIN = "https://flexible-ray-major.ngrok-free.app/v1"; // python
 const apiUpload = API_DOMAIN + "/upload";
 const apiGetBaiHoc = API_DOMAIN + "/getbaihoc";
 const apiGetCauChuyen = API_DOMAIN + "/getcauchuyen";
