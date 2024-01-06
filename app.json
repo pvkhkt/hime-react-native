@@ -29,7 +29,7 @@
         "android.permission.BIND_DEVICE_ADMIN"
       ],
       "package": "com.dttv.hime",
-      "versionCode": 14
+      "versionCode": 16
     },
     "web": {
       "favicon": "./src/assets/favicon.png"

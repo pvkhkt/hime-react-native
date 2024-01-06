@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Camera } from "expo-camera";
-import { upload } from "../utils/http";
+import { upload, ocr } from "../utils/http";
 
 function CameraScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -41,10 +41,19 @@ function CameraScreen({ navigation }) {
     setShowReview(false);
   };
 
-  const acceptPicture = async () => {
+  const aiDetection = async () => {
     setIsLoading(true);
     // Send the photo to the server here
     const response = await upload(photo);
+    navigation.navigate("Library", { data: response });
+    setIsLoading(false);
+    setShowReview(false);
+  };
+
+  const ocrDetection = async () => {
+    setIsLoading(true);
+    // Send the photo to the server here
+    const response = await ocr(photo);
     navigation.navigate("Library", { data: response });
     setIsLoading(false);
     setShowReview(false);
@@ -78,7 +87,7 @@ function CameraScreen({ navigation }) {
               style={styles.button}
               onPress={() => setShowReview(true)}
             >
-              <Text style={styles.text}>Nhận dạng</Text>
+              <Text style={styles.text}>Chụp</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -98,7 +107,7 @@ function CameraScreen({ navigation }) {
                 setType(
                   type === Camera.Constants.Type.back
                     ? Camera.Constants.Type.front
-                    : Camera.Constants.Type.back
+                    : Camera.Constants.Type.back,
                 )
               }
             >
@@ -129,8 +138,11 @@ function CameraScreen({ navigation }) {
               <TouchableOpacity style={styles.button} onPress={retakePicture}>
                 <Text style={styles.text}>Chụp lại</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button} onPress={acceptPicture}>
+              <TouchableOpacity style={styles.button} onPress={aiDetection}>
                 <Text style={styles.text}>Nhận diện</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={ocrDetection}>
+                <Text style={styles.text}>OCR</Text>
               </TouchableOpacity>
             </View>
           )}
