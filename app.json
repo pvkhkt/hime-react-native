@@ -11,11 +11,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dttv.hime"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,12 +28,19 @@
         "android.permission.BIND_DEVICE_ADMIN"
       ],
       "package": "com.dttv.hime",
-      "versionCode": 16
+      "versionCode": 17
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
     },
     "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera.",
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ],
       [
         "expo-camera",
         {

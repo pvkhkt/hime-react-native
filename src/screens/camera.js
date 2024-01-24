@@ -10,12 +10,11 @@ import {
 } from "react-native";
 import { Camera } from "expo-camera";
 import { upload, ocr } from "../utils/http";
+import * as ImagePicker from "expo-image-picker";
 
 function CameraScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
-  const [type, setType] = useState(Camera.Constants.Type.back);
   const [photo, setPhoto] = useState(null);
-  const [showCamera, setShowCamera] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,18 +25,21 @@ function CameraScreen({ navigation }) {
     })();
   }, []);
 
-  const takePicture = async (camera) => {
-    setIsLoading(true);
-    const photo = await camera.takePictureAsync({ quality: 0.5 });
-    setPhoto(photo.uri);
-    setShowCamera(false);
+  const takePicture = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    console.log(result.assets[0].uri);
+    setPhoto(result.assets[0].uri);
     setShowReview(true);
     setIsLoading(false);
   };
 
   const retakePicture = () => {
     setPhoto(null);
-    setShowCamera(true);
     setShowReview(false);
   };
 
@@ -69,10 +71,7 @@ function CameraScreen({ navigation }) {
   return (
     <View style={styles.container}>
       {!photo && (
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => setShowCamera(true)}
-        >
+        <TouchableOpacity style={styles.button} onPress={takePicture}>
           <Text style={styles.text}>Chụp</Text>
         </TouchableOpacity>
       )}
@@ -83,67 +82,32 @@ function CameraScreen({ navigation }) {
             <TouchableOpacity style={styles.button} onPress={retakePicture}>
               <Text style={styles.text}>Chụp lại</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => setShowReview(true)}
-            >
+            <TouchableOpacity style={styles.button} onPress={takePicture}>
               <Text style={styles.text}>Chụp</Text>
             </TouchableOpacity>
           </View>
         </View>
       )}
-      <Modal visible={showCamera} animationType="slide">
-        <Camera
-          style={styles.camera}
-          type={type}
-          ref={(ref) => {
-            this.camera = ref;
-          }}
-        >
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() =>
-                setType(
-                  type === Camera.Constants.Type.back
-                    ? Camera.Constants.Type.front
-                    : Camera.Constants.Type.back,
-                )
-              }
-            >
-              <Text style={styles.text}>Xoay</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => takePicture(this.camera)}
-            >
-              <Text style={styles.text}>Chụp</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => setShowCamera(false)}
-            >
-              <Text style={styles.text}>Thoát</Text>
-            </TouchableOpacity>
-          </View>
-        </Camera>
-      </Modal>
       <Modal visible={showReview} animationType="slide">
         <View style={styles.previewContainer}>
           <Image source={{ uri: photo }} style={styles.preview} />
           {isLoading ? (
             <ActivityIndicator size="large" color="#0000ff" />
           ) : (
-            <View style={styles.buttonsContainer}>
-              <TouchableOpacity style={styles.button} onPress={retakePicture}>
-                <Text style={styles.text}>Chụp lại</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button} onPress={aiDetection}>
-                <Text style={styles.text}>Nhận diện</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button} onPress={ocrDetection}>
-                <Text style={styles.text}>OCR</Text>
-              </TouchableOpacity>
+            <View>
+              <View style={styles.buttonsContainer}>
+                <TouchableOpacity style={styles.button} onPress={retakePicture}>
+                  <Text style={styles.text}>Chụp lại</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.buttonsContainer}>
+                <TouchableOpacity style={styles.button} onPress={aiDetection}>
+                  <Text style={styles.text}>Nhận diện</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={ocrDetection}>
+                  <Text style={styles.text}>Nhận diện chữ viết</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           )}
         </View>
@@ -164,7 +128,7 @@ const styles = StyleSheet.create({
     backgroundColor: "coral",
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 100,
   },
   text: {
     color: "white",
