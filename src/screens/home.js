@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     alignSelf: "flex-end",
     borderRadius: 100,
-    backgroundColor: "coral",
+    backgroundColor: "#9ab89a",
     margin: 16,
     right: 0,
   },
